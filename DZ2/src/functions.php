@@ -12,9 +12,24 @@ function task1($mas, $flag = false)
 
 function task2(...$arg)
 {
-    $res = 0;
-    for ($i = 0; $i < count($arg); $i++) {
-        $res = $res . $arg[0] + $arg[$i];
+    $res = $arg[1];
+    for ($i = 2; $i < count($arg); $i++) {
+        switch ($arg[0]) {
+            case '+':
+                $res += $arg[$i];
+                break;
+            case "-":
+                $res -= $arg[$i];
+                break;
+            case "*":
+                $res *= $arg[$i];
+                break;
+            case "/":
+                if ($arg[$i] == 0) continue;
+                $res /= $arg[$i];
+                break;
+            default: $res = "Неизвестно";
+        }
     }
     return($res);
 }
@@ -26,7 +41,7 @@ function task3($one, $two)
         for ($i = 1; $i <=$one; $i++) {
             echo '<tr>';
             for ($j = 1; $j <=$two; $j++) {
-                echo '<td>&nbsp;' . $j * $i . '&nbsp;</td>';
+                echo "<td>$j * $i = " . $j * $i . "&nbsp;</td>";
             }
             echo '</tr>';
         }
@@ -51,8 +66,11 @@ function task5($str)
     return str_replace('Две', 'Три', $str);
 }
 
-function readFiles($fileName)
+function readFiles($text)
 {
-    return file_get_contents($fileName);
+    $fp = fopen('test.txt', 'w');
+    fwrite($fp, $text);
+    fclose($fp);
+    return file_get_contents('./test.txt');
 
 }
