@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Пример XSS</title>
+    <title>Кашеринг</title>
 </head>
 <body>
 <form method = 'POST' action = ''>
@@ -27,29 +27,4 @@
 </html>
 <?php
 require './init.php';
-
-
-if ($_POST['tariff'] == "base") {
-    $base = new Base($_POST['age'], $_POST['tariff'], $_POST['s'],
-        $_POST['hour'], $_POST['minut'],$_POST['gps'], $_POST['driver']);
-    echo "<br>" .$base->show();
-    echo "<br> Стоимость поездки составит: " . $base->getprice() . " руб";
-} elseif ($_POST['tariff'] == "hour") {
-    $base = new Hour($_POST['age'], $_POST['tariff'], $_POST['s'],
-        $_POST['hour'], $_POST['minut'],$_POST['gps'], $_POST['driver']);
-    echo "<br> Стоимость поездки составит: " . $base->getprice() . " руб";
-    echo "<br>" .$base->show();
-} elseif ($_POST['tariff'] == "day") {
-    $base = new Hour($_POST['age'], $_POST['tariff'], $_POST['s'],
-        $_POST['hour'], $_POST['minut'],$_POST['gps'], $_POST['driver']);
-    echo "<br> Стоимость поездки составит: " . $base->getprice() . " руб";
-}elseif ($_POST['tariff'] == "student") {
-    $base = new Hour($_POST['age'], $_POST['tariff'], $_POST['s'],
-        $_POST['hour'], $_POST['minut'],$_POST['gps'], $_POST['driver']);
-    echo "<br> Стоимость поездки составит: " . $base->getprice() . " руб";
-} else {
-    echo "Выберите тариф";
-}
-
-
 ?>
